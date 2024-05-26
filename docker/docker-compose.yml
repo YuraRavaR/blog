@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  app:
+    image: "sha256:258a820763910e5c3b3e05e77bec9f9fd9791db95afb9568993a7f69d6bcfab1"
+    container_name: app
+    expose:
+      - '8080'
+    ports:
+      - '8088:8080'
+    environment:
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - DB_URL=jdbc:postgresql://db:5432/postgres
+    depends_on:
+      - db
+
+  db:
+    image: "postgres"
+    container_name: db
+    expose:
+      - '5432'
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
