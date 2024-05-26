@@ -10,4 +10,5 @@ public class PostDTO {
     String title;
     String anons;
     String full_text;
+
 }
