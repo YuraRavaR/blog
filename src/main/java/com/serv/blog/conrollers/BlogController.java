@@ -1,14 +1,12 @@
 package com.serv.blog.conrollers;
 
+import com.serv.blog.DTO.PostDTO;
 import com.serv.blog.models.Post;
 import com.serv.blog.repo.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -31,12 +29,14 @@ public class BlogController {
         return "blog-add";
     }
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title,@RequestParam String anons,@RequestParam String full_text, Model model) {
-        Post post = new Post(title,anons,full_text);
+    public String blogPostAdd(@ModelAttribute PostDTO postDTO) {
+        Post post = new Post();
+        post.setTitle(postDTO.getTitle());
+        post.setAnons(postDTO.getAnons());
+        post.setFull_text(postDTO.getFull_text());
         postRepository.save(post);
         return "redirect:/blog";
     }
-
 
     @GetMapping("/blog/{id}")
     public String blogDetails(@PathVariable(value = "id") long id, Model model) {
@@ -51,7 +51,7 @@ public class BlogController {
     }
 
     @GetMapping("/blog/{id}/edit")
-    public String blodEdit(@PathVariable(value = "id") long id, Model model) {
+    public String blogEdit(@PathVariable(value = "id") long id, Model model) {
         if(!postRepository.existsById(id)){
             return "redirect:/blog";
         }
