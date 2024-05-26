@@ -3,6 +3,8 @@ package com.serv.blog.conrollers;
 import com.serv.blog.DTO.PostDTO;
 import com.serv.blog.models.Post;
 import com.serv.blog.repo.PostRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
+@Tag(name = "blog_methods", description = "Endpoints for managing blog posts")
 @Controller
 public class BlogController {
 
     @Autowired
     private PostRepository postRepository;
+    @Operation(summary = "Get all blog posts")
 
     @GetMapping("/blog")
     public String blogMain(Model model) {
@@ -28,12 +31,14 @@ public class BlogController {
     public String blogAdd(Model model) {
         return "blog-add";
     }
+    @Operation(summary = "Add a new blog post")
     @PostMapping("/blog/add")
     public String blogPostAdd(@ModelAttribute PostDTO postDTO) {
-        Post post = new Post();
-        post.setTitle(postDTO.getTitle());
-        post.setAnons(postDTO.getAnons());
-        post.setFull_text(postDTO.getFull_text());
+        Post post = Post.builder()
+                .title(postDTO.getTitle())
+                .anons(postDTO.getAnons())
+                .full_text(postDTO.getFull_text())
+                .build();
         postRepository.save(post);
         return "redirect:/blog";
     }
@@ -63,11 +68,11 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id,@RequestParam String title,@RequestParam String anons,@RequestParam String full_text, Model model) {
+    public String blogPostUpdate(@PathVariable(value = "id") long id, @ModelAttribute PostDTO postDTO) {
         Post post = postRepository.findById(id).orElseThrow();
-        post.setTitle(title);
-        post.setAnons(anons);
-        post.setFull_text(full_text);
+        post.setTitle(postDTO.getTitle());
+        post.setAnons(postDTO.getAnons());
+        post.setFull_text(postDTO.getFull_text());
         postRepository.save(post);
         return "redirect:/blog";
     }
