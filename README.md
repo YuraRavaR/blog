@@ -43,3 +43,5 @@ mvn package -DskipTests
 6. docker-compose up
 7. docker ps
 8. docker-compose logs app
+
+9. Open swagger http://localhost:8088/swagger-ui/index.html
