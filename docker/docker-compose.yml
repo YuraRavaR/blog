@@ -2,12 +2,12 @@ version: '3.1'
 
 services:
   app:
-    image: "sha256:258a820763910e5c3b3e05e77bec9f9fd9791db95afb9568993a7f69d6bcfab1"
+    image: "sha256:8e11977a7b2623284b44792ef0e1fbd35aa17752bbd603b8b039903488482836"
     container_name: app
     expose:
       - '8080'
     ports:
-      - '8088:8080'
+      - '8080:8080'
     environment:
       - DB_USER=admin
       - DB_PASSWORD=admin

@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
-@Tag(name = "blog_methods", description = "Endpoints for managing blog posts")
 @Controller
-public class BlogController {
+public class BlogWebController {
 
     @Autowired
     private PostRepository postRepository;
-    @Operation(summary = "Get all blog posts")
 
     @GetMapping("/blog")
     public String blogMain(Model model) {
@@ -31,7 +29,7 @@ public class BlogController {
     public String blogAdd(Model model) {
         return "blog-add";
     }
-    @Operation(summary = "Add a new blog post")
+
     @PostMapping("/blog/add")
     public String blogPostAdd(@ModelAttribute PostDTO postDTO) {
         Post post = Post.builder()
@@ -83,5 +81,9 @@ public class BlogController {
         postRepository.delete(post);
         return "redirect:/blog";
     }
-
+    @PostMapping("/remove")
+    public String deleteAllPosts() {
+        postRepository.deleteAll();
+        return "redirect:/blog";
+    }
 }

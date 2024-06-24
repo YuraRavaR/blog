@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 //@Tag(name = "main_methods")
 @Controller
-public class MainController {
+public class MainWebController {
 
     @GetMapping("/")
     public String home(Model model) {
