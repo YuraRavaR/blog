@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   app:
-    image: "sha256:8e11977a7b2623284b44792ef0e1fbd35aa17752bbd603b8b039903488482836"
+    image: "sha256:0c7b853eed158363d44d7c87c593b54ce4dc48be02c956d2d8875ad775936b0d"
     container_name: app
     expose:
       - '8080'
@@ -23,3 +23,5 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

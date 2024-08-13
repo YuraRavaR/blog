@@ -3,8 +3,6 @@ package com.serv.blog.conrollers;
 import com.serv.blog.DTO.PostDTO;
 import com.serv.blog.models.Post;
 import com.serv.blog.repo.PostRepository;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Optional;
 @Controller
-public class BlogWebController {
+public class BlogWebСontroller {
 
     @Autowired
     private PostRepository postRepository;

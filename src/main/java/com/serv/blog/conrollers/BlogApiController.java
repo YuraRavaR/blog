@@ -6,9 +6,11 @@ import com.serv.blog.models.Post;
 import com.serv.blog.repo.PostRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 @Tag(name = "post", description = "Endpoints for managing blog posts")
 @RestController
+@Validated
 @RequestMapping("/api/posts")
 public class BlogApiController {
 
@@ -30,7 +33,7 @@ public class BlogApiController {
 
 
     @PostMapping
-    public ResponseEntity<Post> addNewPost(@RequestBody PostDTO postDTO) {
+    public ResponseEntity<Post> addNewPost(@Valid @RequestBody PostDTO postDTO) {
         Post post = Post.builder()
                 .title(postDTO.getTitle())
                 .anons(postDTO.getAnons())
@@ -48,7 +51,7 @@ public class BlogApiController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody PostDTO postDTO) {
+    public ResponseEntity<Post> updatePost(@PathVariable Long id, @Valid @RequestBody PostDTO postDTO) {
         Optional<Post> optionalPost = postRepository.findById(id);
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
