@@ -5,9 +5,9 @@ services:
     image: "sha256:0c7b853eed158363d44d7c87c593b54ce4dc48be02c956d2d8875ad775936b0d"
     container_name: app
     expose:
-      - '8080'
+      - '8088'
     ports:
-      - '8080:8080'
+      - '8088:8080'
     environment:
       - DB_USER=admin
       - DB_PASSWORD=admin
