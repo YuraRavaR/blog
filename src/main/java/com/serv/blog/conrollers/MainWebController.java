@@ -18,5 +18,10 @@ public class MainWebController {
         model.addAttribute("title", "About us");
         return "about";
     }
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("title", "Login");
+        return "login";
+    }
 
 }

@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   app:
-    image: "sha256:0c7b853eed158363d44d7c87c593b54ce4dc48be02c956d2d8875ad775936b0d"
+    image: "sha256:b93ab2c1fba702debd6e2c52fff6600e3cfc9edcddb5a55bafa0c8cf4ec7cfaf"
     container_name: app
     expose:
       - '8080'

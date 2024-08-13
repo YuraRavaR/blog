@@ -1,4 +1,58 @@
+# BlogApplication
+
+BlogApplication is a simple web application built with Spring Boot for managing a blog. It allows users to create, view, edit and delete blog posts.
+
+
+## Getting Started
+
+### Running with Docker Compose
+
+Follow these steps:
+
+### 1. Navigate to the Docker Directory
+
+Change to the directory containing the `docker-compose.yml` file:
+
+```bash
+cd docker
+```
+### 2. Start the Application
+
+Run the application using Docker Compose:
+
+```bash
+docker-compose up
+```
+### 3. Access the Application
+
+Open a web browser and navigate to:
+
+[http://localhost:8080/](http://localhost:8080/)
+
+### 4. Stop the Docker Compose Setup
+
+To stop and remove the Docker containers, run:
+
+```bash
+docker-compose down
+```
+
+
+### Additional Information
+
+- **Swagger**: Access the Swagger documentation at [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) for API documentation and testing.
+
+- **Database**: The application uses PostgreSQL
+
+
+#
+#
+#
+#
+#
+#
 ## How to Run
+
 
 
 1. Navigate to `BlogApplication` class and run 
